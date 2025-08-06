@@ -10,8 +10,12 @@ permissions:
 
 jobs:
   build-and-sign:
-    runs-on: windows-latest
-    name: Build api and sign files with Trusted Signing
+    strategy:
+      matrix:
+        os: [windows-latest, windows-2025]
+    runs-on: ${{ matrix.os }}
+    
+    name: Build and sign on ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
