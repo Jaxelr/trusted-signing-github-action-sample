@@ -1,3 +1,3 @@
 # Sample trusted signing github action
 
-This repository contains a sample app that leverages the trusted signing github action to sign the resulting bits. I usually use it to quickly test and reproduce scenarios related to trusted signing.
+This repository hosts a sample app that utilizes the Trusted Signing GitHub Action to sign the generated artifacts. I typically use it for quick tests and reproducing scenarios related to ts.
