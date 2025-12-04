@@ -40,7 +40,7 @@ jobs:
           enable-AzPSSession: true
 
       - name: Sign files with Trusted Signing
-        uses: azure/trusted-signing-action@1d365fec12862c4aa68fcac418143d73f0cea293
+        uses: azure/trusted-signing-action@v0.5.11
         with:
           endpoint: https://eus.codesigning.azure.net/
           trusted-signing-account-name: jaxelr
