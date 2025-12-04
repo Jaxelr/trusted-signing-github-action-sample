@@ -12,7 +12,7 @@ jobs:
   build-and-sign:
     strategy:
       matrix:
-        os: [windows-latest, windows-2025]
+        os: [windows-2025]
     runs-on: ${{ matrix.os }}
     
     name: Build and sign on ${{ matrix.os }}
@@ -40,7 +40,7 @@ jobs:
           enable-AzPSSession: true
 
       - name: Sign files with Trusted Signing
-        uses: azure/trusted-signing-action@e3e25950970370fb09e2bd4b75bdc708e08d954d
+        uses: azure/trusted-signing-action@b6b6eade83f9e4ca276219f347d00870ce0c6a12
         with:
           endpoint: https://eus.codesigning.azure.net/
           trusted-signing-account-name: jaxelr
